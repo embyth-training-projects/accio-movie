@@ -1,0 +1,61 @@
+.logo {
+  width: 100%;
+}
+
+.logo-link {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px 5px 10px 45px;
+  color: $font-color-logo;
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus {
+    color: rgba($font-color-logo, 0.6);
+
+    .logo-svg {
+      stroke: rgba($stroke-svg, 0.6);
+    }
+  }
+
+  &:active {
+    transition: none;
+    color: rgba($font-color-logo, 0.3);
+
+    .logo-svg {
+      transition: none;
+      stroke: rgba($stroke-svg, 0.3);
+    }
+  }
+
+  @media ($desktop) {
+    padding: 20px 10px 15px 70px;
+  }
+}
+
+.logo-svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke: $stroke-svg;
+  width: 35px;
+  transition: stroke 0.3s ease;
+
+  @media ($desktop) {
+    width: 60px;
+  }
+}
+
+.logo-text {
+  font-size: font-size(logo-m);
+  font-weight: font-weight(regular);
+  letter-spacing: 2px;
+
+  @media ($desktop) {
+    font-size: font-size(logo-d);
+    letter-spacing: 4px;
+  }
+}

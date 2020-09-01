@@ -1,0 +1,56 @@
+.socials {
+  width: 100%;
+
+  @media ($desktop) {
+    width: 33%;
+  }
+}
+
+.socials-list {
+  @include list-reset();
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.socials-item {
+  margin-left: 15px;
+
+  a {
+    display: inline-block;
+    padding: 5px 9px;
+    line-height: 0;
+
+    &:hover,
+    &:focus {
+      .socials-instagram {
+        fill: $stroke-svg--instagram;
+      }
+
+      .socials-telegram {
+        fill: $stroke-svg--telegram;
+      }
+
+      .socials-github {
+        fill: $stroke-svg--github;
+      }
+    }
+
+    &:active {
+      opacity: 30%;
+    }
+  }
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+}
+
+.socials-svg {
+  transition: fill 0.3s ease;
+  fill: $stroke-svg;
+  width: 25px;
+  height: 25px;
+}

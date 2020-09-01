@@ -2,7 +2,7 @@
 $mobile-width: 320px;
 $mobile-l-width: 425px;
 $tablet-width: 768px;
-$desktop-width: 1150px;
+$desktop-width: 1280px;
 
 $mobile-l-max-width: ($tablet-width - 1);
 
@@ -19,15 +19,14 @@ $retina: "min-resolution: #{$retina-dpi}";
 
 // Padding Variables
 $paddings: (
-  container-m: 0 30px,
-  container-t: 0 50px,
+  container-m: 0 20px,
+  container-t: 0 30px,
   container-d: 0 50px,
 );
 
 // Font Variables
 $font-stack: (
-  montserrat: ("Montserrat", tahoma, arial, sans-serif),
-  crimson: ("CrimsonText", "Palatino", "Times New Roman", serif),
+  montserrat: ("Montserrat", tahoma, arial, sans-serif)
 );
 
 $font-weights: (
@@ -37,22 +36,92 @@ $font-weights: (
 );
 
 $line-height-base: 24px;
+$line-height-heading-m: 26px;
+$line-height-heading-d: 32px;
+$line-height-card-plot-m: 24px;
+$line-height-card-plot-d: 26px;
 
 $font-line-height: (
   base: $line-height-base,
+  heading-m: $line-height-heading-m,
+  heading-d: $line-height-heading-d,
+  card-plot-m: $line-height-card-plot-m,
+  card-plot-d: $line-height-card-plot-d,
 );
 
 $font-size-base: 14px;
+$font-size-logo-m: 15px;
+$font-size-logo-d: 18px;
+$font-size-legend-m: 16px;
+$font-size-legend-d: 22px;
+$font-size-input-m: 15px;
+$font-size-input-d: 20px;
+$font-size-heading-m: 18px;
+$font-size-heading-d: 24px;
+$font-size-copyright-m: 11px;
+$font-size-copyright-d: 10px;
+$font-size-card-title-m: 14px;
+$font-size-card-title-d: 16px;
+$font-size-card-prod-m: 12px;
+$font-size-card-prod-d: 14px;
+$font-size-card-rating-m: 16px;
+$font-size-card-rating-d: 18px;
+$font-size-card-genre-m: 12px;
+$font-size-card-genre-d: 14px;
+$font-size-card-plot-m: 14px;
+$font-size-card-plot-d: 15px;
 
 $font-sizes: (
   base: $font-size-base,
+  logo-m: $font-size-logo-m,
+  logo-d: $font-size-logo-d,
+  legend-m: $font-size-legend-m,
+  legend-d: $font-size-legend-d,
+  input-m: $font-size-input-m,
+  input-d: $font-size-input-d,
+  heading-m: $font-size-heading-m,
+  heading-d: $font-size-heading-d,
+  copyright-m: $font-size-copyright-m,
+  copyright-d: $font-size-copyright-d,
+  card-title-m: $font-size-card-title-m,
+  card-title-d: $font-size-card-title-d,
+  card-prod-m: $font-size-card-prod-m,
+  card-prod-d: $font-size-card-prod-d,
+  card-rating-m: $font-size-card-rating-m,
+  card-rating-d: $font-size-card-rating-d,
+  card-genre-m: $font-size-card-genre-m,
+  card-genre-d: $font-size-card-genre-d,
+  card-plot-m: $font-size-card-plot-m,
+  card-plot-d: $font-size-card-plot-d,
 );
 
 // Color Variables
 $black: #000000;
 $white: #ffffff;
+$dark: #292929;
+$grey: #424244;
+$orange: #F7971E;
 
 $bg-color-body: $white;
+$bg-color-header: $dark;
+$bg-color-footer: $dark;
+$bg-color-input: $dark;
 $bg-color-button: $white;
+$bg-color-button--search: $grey;
+$bg-color-button--imdb: #F5C517;
+$bg-color-button--google: $white;
+
+$stroke-svg: $white;
+$stroke-svg--instagram: #C13584;
+$stroke-svg--telegram: #0088cc;
+$stroke-svg--github: #6F42C1;
 
 $font-color-base: $black;
+$font-color-header: $white;
+$font-color-footer: $white;
+$font-color-input: $white;
+$font-color-logo: $white;
+$font-color-heading: $dark;
+$font-color-card: $white;
+$font-color-button--imdb: $black;
+$font-color-button--google: $dark;

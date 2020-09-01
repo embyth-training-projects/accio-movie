@@ -1,0 +1,15 @@
+.section-heading {
+  color: $font-color-heading;
+  font-size: font-size(heading-m);
+  font-weight: font-weight(bold);
+  text-transform: uppercase;
+  line-height: font-lh(heading-m);
+  margin: 20px 0;
+  text-align: center;
+
+  @media ($desktop) {
+    font-size: font-size(heading-d);
+    line-height: font-lh(heading-d);
+    margin: 30px 0;
+  }
+}

@@ -1,0 +1,79 @@
+.site-footer {
+  background-color: $bg-color-footer;
+  background-image: url("../img/pattern.jpg");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  color: $font-color-footer;
+}
+
+.footer-inner {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .logo {
+    display: none;
+  }
+
+  @media ($desktop) {
+    flex-flow: row nowrap;
+
+    .logo {
+      display: block;
+      width: 33%;
+    }
+  }
+}
+
+.copyright {
+  margin: 0 0 15px;
+  font-size: font-size(copyright-m);
+  text-transform: uppercase;
+
+  a {
+    color: $font-color-footer;
+    position: relative;
+    transition: color 0.3s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 1px;
+      background-color: $font-color-footer;
+      transition: background-color 0.3s ease, width 0.3s ease;
+    }
+
+    &:hover,
+    &:focus {
+      color: rgba($font-color-footer, 0.6);
+
+      &::after {
+        background-color: rgba($font-color-footer, 0.6);
+        width: 100%;
+      }
+    }
+
+    &:active {
+      transition: none;
+      color: rgba($font-color-footer, 0.3);
+
+      &::after {
+        transition: none;
+        background-color: rgba($font-color-footer, 0.3);
+      }
+    }
+  }
+
+  @media ($desktop) {
+    width: 33%;
+    font-size: font-size(copyright-d);
+    margin: 0;
+    text-align: right;
+  }
+}

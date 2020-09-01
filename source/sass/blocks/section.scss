@@ -1,0 +1,31 @@
+.results,
+.random {
+  padding: 10px 0 30px;
+
+  @media ($desktop) {
+    padding: 25px 0 50px;
+  }
+}
+
+.movie-list {
+  @include list-reset();
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+  justify-content: center;
+  align-items: stretch;
+  align-content: start;
+  width: 100%;
+
+  @media ($tablet) {
+    grid-template-columns: repeat(auto-fit, 310px);
+    grid-gap: 30px;
+  }
+
+  @media ($desktop) {
+    grid-template-columns: repeat(auto-fit, 340px);
+    grid-gap: 40px;
+  }
+}

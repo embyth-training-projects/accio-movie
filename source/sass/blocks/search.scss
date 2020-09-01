@@ -1,0 +1,202 @@
+.search-form {
+  width: 100%;
+  padding: 40px 0 60px;
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  @media ($desktop) {
+    padding: 80px 0 120px;
+  }
+}
+
+.fieldset-inner {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  align-items: center;
+}
+
+.search-legend {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: font-size(legend-m);
+  font-weight: font-weight(regular);
+
+  @media ($desktop) {
+    font-size: font-size(legend-d);
+    margin-bottom: 60px;
+  }
+}
+
+.input-field {
+  width: 100%;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: calc(-1 * 1px);
+    left: calc(-1 * 1px);
+    z-index: -1;
+    width: calc(100% + 2 * 1px);
+    height: calc(100% + 2 * 1px);
+    background: linear-gradient(
+      60deg,
+      hsl(224, 85%, 66%),
+      hsl(269, 85%, 66%),
+      hsl(314, 85%, 66%),
+      hsl(359, 85%, 66%),
+      hsl(44, 85%, 66%),
+      hsl(89, 85%, 66%),
+      hsl(134, 85%, 66%),
+      hsl(179, 85%, 66%)
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: 0;
+    animation: moveGradient 4s alternate infinite;
+  }
+
+  @media ($tablet) {
+    width: 80%;
+  }
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 10px 55px 10px 10px;
+  background-color: $bg-color-input;
+  color: $font-color-input;
+  font-size: font-size(input-m);
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 0.3s ease;
+  // border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cstyle%3Epath%7Banimation:stroke 5s infinite linear%3B%7D%40keyframes stroke%7Bto%7Bstroke-dashoffset:776%3B%7D%7D%3C/style%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232d3561' /%3E%3Cstop offset='25%25' stop-color='%23c05c7e' /%3E%3Cstop offset='50%25' stop-color='%23f3826f' /%3E%3Cstop offset='100%25' stop-color='%23ffb961' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3' stroke-dasharray='388'/%3E %3C/svg%3E") 1;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown {
+    z-index: 0;
+  }
+
+  &:placeholder-shown ~ .search-label {
+    cursor: text;
+
+    &::after {
+      width: 0;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px rgba($orange, 0.7);
+  }
+
+  @media ($desktop) {
+    font-size: font-size(input-d);
+    padding: 13px 75px 13px 15px;
+  }
+}
+
+.search-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  font-size: font-size(input-m);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: calc(100% + 1px);
+    height: 100%;
+    background-color: $bg-color-input;
+    transition: all 0.3s ease;
+  }
+
+  @media ($desktop) {
+    left: 15px;
+    font-size: font-size(input-d);
+  }
+}
+
+.search-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 45px;
+  height: 100%;
+  background-color: $bg-color-button--search;
+  cursor: pointer;
+  z-index: 3;
+  transition: background-color 0.3s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 60%;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: lighten($bg-color-button--search, 15%);
+  }
+
+  &:active {
+    opacity: 30%;
+  }
+
+  @media ($desktop) {
+    width: 60px;
+  }
+}
+
+.search-svg {
+  width: 17px;
+  height: 17px;
+  fill: $stroke-svg;
+
+  @media ($desktop) {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* clears the 'X' from Internet Explorer */
+input[type=search]::-ms-clear {
+  display: none; width : 0; height: 0;
+}
+input[type=search]::-ms-reveal {
+  display: none; width : 0; height: 0;
+}
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}

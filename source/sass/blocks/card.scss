@@ -1,0 +1,202 @@
+.movie-card {
+  position: relative;
+  min-width: 280px;
+  max-width: 360px;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: rgba($black, 0.6);
+
+  &:hover,
+  &:focus,
+  &:active {
+    .movie-poster {
+      transform: scale(0.96);
+      filter: blur(4px);
+    }
+
+    .movie-info {
+      transform: none;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  @media ($tablet) {
+    max-width: 310px;
+  }
+
+  @media ($desktop) {
+    max-width: 340px;
+  }
+}
+
+.poster-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.movie-poster {
+  display: block;
+  width: 100%;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.movie-info {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px 15px 25px;
+  background-color: rgba($black, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+  color: $font-color-card;
+
+  @media ($desktop) {
+    padding: 25px;
+  }
+}
+
+.movie-title {
+  font-size: font-size(card-title-m);
+  font-weight: font-weight(bold);
+  text-transform: uppercase;
+  margin: 0 0 10px;
+
+  @media ($desktop) {
+    font-size: font-size(card-title-d);
+  }
+}
+
+.movie-prod {
+  font-size: font-size(card-prod-m);
+  margin: 0 0 10px;
+
+  i {
+    font-style: normal;
+  }
+
+  mark {
+    background: none;
+    color: inherit;
+  }
+
+  @media ($desktop) {
+    font-size: font-size(card-prod-d);
+  }
+}
+
+.movie-rating {
+  position: relative;
+  margin: 0 0 10px;
+  padding-left: 30px;
+}
+
+.rating-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: $stroke-svg;
+}
+
+.rating-value {
+  font-weight: font-weight(bold);
+  font-size: font-size(card-rating-m);
+
+  &--bad {
+    color: red;
+  }
+
+  &--normal {
+    color: gray;
+  }
+
+  &--good {
+    color: lightgreen;
+  }
+
+  @media ($desktop) {
+    font-size: font-size(card-rating-d);
+  }
+}
+
+.movie-genre {
+  position: relative;
+  margin: 0 0 20px;
+  padding: 0 0 0 25px;
+  font-size: font-size(card-genre-m);
+
+  i {
+    font-style: normal;
+  }
+
+  @media ($desktop) {
+    font-size: font-size(card-genre-d);
+  }
+}
+
+.genre-svg {
+  fill: $stroke-svg;
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
+
+.movie-plot {
+  margin: 0 0 20px;
+  font-size: font-size(card-plot-m);
+  line-height: font-lh(card-plot-m);
+
+  @media ($desktop) {
+    font-size: font-size(card-plot-d);
+    line-height: font-lh(card-plot-d);
+  }
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.movie-link {
+  text-align: center;
+  display: inline-block;
+  color: inherit;
+  padding: 5px 15px;
+  cursor: pointer;
+  width: 52%;
+  background-color: $bg-color-button--imdb;
+  color: $font-color-button--imdb;
+  transition: background-color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background-color: darken($bg-color-button--imdb, 15%);
+  }
+
+  &:active {
+    opacity: 30%;
+  }
+}
+
+.google-link {
+  background-color: $bg-color-button--google;
+  color: $font-color-button--google;
+  width: 44%;
+
+  &:hover,
+  &:focus {
+    background-color: darken($bg-color-button--google, 20%);
+  }
+}
