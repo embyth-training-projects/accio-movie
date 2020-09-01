@@ -2,8 +2,8 @@
 
 module.exports = {
   images: {
-    quality: 80,
-    webp: true
+    quality: 100,
+    webp: false
   },
   icons: {
     sprite: true

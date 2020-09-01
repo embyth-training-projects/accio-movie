@@ -9,7 +9,8 @@ const { series, parallel } = require('gulp');
 const build = series(
   clean,
   convertfonts,
-  parallel(copy, fonts, markup, styles, scripts, images, webp, icons)
+  copy,
+  parallel(fonts, markup, styles, scripts, images, webp, icons)
 );
 
 exports.zip = series(zip);

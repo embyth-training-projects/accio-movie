@@ -34,7 +34,8 @@ module.exports = {
     vendor: {
       styles: [
         './node_modules/normalize.css/normalize.css'
-      ]
+      ],
+      scripts: []
     }
   }
 };
