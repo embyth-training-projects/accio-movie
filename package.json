@@ -54,14 +54,13 @@
     "husky": "^4.2.5",
     "imagemin-jpegoptim": "^7.0.0",
     "require-dir": "^1.2.0",
-    "stylelint": "^13.6.1",
+    "stylelint": "^13.7.0",
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.10.4",
-    "normalize.css": "^8.0.1",
-    "picturefill": "^3.0.3",
-    "svg4everybody": "^2.1.9"
+    "cwebp-bin": "^6.1.1",
+    "jpegoptim-bin": "^6.0.0",
+    "normalize.css": "^8.0.1"
   },
   "husky": {
     "hooks": {
