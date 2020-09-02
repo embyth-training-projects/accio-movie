@@ -1,4 +1,4 @@
-# :movie_camera: Project «Accio Movie» by [Glo Academy](https://www.youtube.com/c/GloAcademyChannel)
+# :movie_camera: Project «Accio Movie» with [The Movie Db API](https://www.themoviedb.org/documentation/api)
 
 [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
