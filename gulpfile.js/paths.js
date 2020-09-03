@@ -35,7 +35,9 @@ module.exports = {
       styles: [
         './node_modules/normalize.css/normalize.css'
       ],
-      scripts: []
+      scripts: [
+        './node_modules/@babel/polyfill/dist/polyfill.min.js'
+      ]
     }
   }
 };
