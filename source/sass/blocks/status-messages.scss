@@ -1,0 +1,36 @@
+.movie-not-found,
+.error-message {
+  width: 100%;
+  background-color: $bg-color-not-found;
+  padding: 30px 10px;
+  color: $font-color-card;
+  text-align: center;
+
+  h3 {
+    font-size: font-size(status-message-m);
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+
+  p {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  @media ($desktop) {
+    padding: 30px 40px;
+
+    h3 {
+      font-size: font-size(status-message-d);
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+.error-message {
+  background-color: $bg-color-error;
+  margin: 25px 0;
+}

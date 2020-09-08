@@ -2,6 +2,20 @@
   width: 100%;
 }
 
+.logo-svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke: $stroke-svg;
+  width: 35px;
+  transition: stroke 0.3s ease;
+
+  @media ($desktop) {
+    width: 60px;
+  }
+}
+
 .logo-link {
   display: inline-block;
   position: relative;
@@ -32,20 +46,6 @@
 
   @media ($desktop) {
     padding: 20px 10px 15px 70px;
-  }
-}
-
-.logo-svg {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  stroke: $stroke-svg;
-  width: 35px;
-  transition: stroke 0.3s ease;
-
-  @media ($desktop) {
-    width: 60px;
   }
 }
 

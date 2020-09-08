@@ -1,6 +1,11 @@
-.results,
-.random {
-  padding: 10px 0 30px;
+.results {
+  @media ($desktop) {
+    padding: 25px 0 25px;
+  }
+}
+
+.trending {
+  padding: 0 0 20px;
 
   @media ($desktop) {
     padding: 25px 0 50px;
@@ -19,13 +24,27 @@
   align-content: start;
   width: 100%;
 
+  &--full-width {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+
   @media ($tablet) {
     grid-template-columns: repeat(auto-fit, 310px);
     grid-gap: 30px;
+
+    &--full-width {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media ($desktop) {
     grid-template-columns: repeat(auto-fit, 340px);
     grid-gap: 40px;
+
+    &--full-width {
+      grid-template-columns: 1fr;
+      margin-top: 0;
+    }
   }
 }

@@ -70,6 +70,8 @@ $font-size-card-genre-m: 12px;
 $font-size-card-genre-d: 14px;
 $font-size-card-plot-m: 14px;
 $font-size-card-plot-d: 15px;
+$font-size-status-message-m: 14px;
+$font-size-status-message-d: 16px;
 
 $font-sizes: (
   base: $font-size-base,
@@ -93,6 +95,8 @@ $font-sizes: (
   card-genre-d: $font-size-card-genre-d,
   card-plot-m: $font-size-card-plot-m,
   card-plot-d: $font-size-card-plot-d,
+  status-message-m: $font-size-status-message-m,
+  status-message-d: $font-size-status-message-d,
 );
 
 // Color Variables
@@ -100,21 +104,23 @@ $black: #000000;
 $white: #ffffff;
 $dark: #292929;
 $grey: #424244;
-$orange: #F7971E;
+$orange: #f7971e;
 
 $bg-color-body: $white;
 $bg-color-header: $dark;
 $bg-color-footer: $dark;
+$bg-color-not-found: $dark;
+$bg-color-error: red;
 $bg-color-input: $dark;
 $bg-color-button: $white;
 $bg-color-button--search: $grey;
-$bg-color-button--imdb: #F5C517;
+$bg-color-button--imdb: #f5c517;
 $bg-color-button--google: $white;
 
 $stroke-svg: $white;
-$stroke-svg--instagram: #C13584;
+$stroke-svg--instagram: #c13584;
 $stroke-svg--telegram: #0088cc;
-$stroke-svg--github: #6F42C1;
+$stroke-svg--github: #6f42c1;
 
 $font-color-base: $black;
 $font-color-header: $white;
