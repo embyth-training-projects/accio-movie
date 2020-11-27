@@ -1,25 +1,17 @@
-'use strict';
+import SearchView from './view/search.js';
+import Api from './api/index.js';
+import {render} from './utils/render.js';
+import {RenderPosition} from './const.js';
 
-(function () {
-  // Preccess trending server response
-  var processTrendingResponse = function (data, node) {
-    var trendingListNode = node.querySelector('.trending .movie-list');
-    window.data.collect(data.results, trendingListNode);
-    window.util.showElement(node);
-  };
+const END_POINT = `https://api.themoviedb.org/3`;
+const API_KEY = `fae583c1b46b878dbb53f8088eb03af6`;
 
-  // DOM Content loaded event handler
-  var onDOMLoad = function () {
-    var trendingParentNode = document.querySelector('.trending');
+const api = new Api(END_POINT, API_KEY);
 
-    // Loading Trending Movies from server
-    fetch(window.util.URL.TRENDING)
-      .then(response => window.util.handleResponse(response))
-      .then(data => processTrendingResponse(data, trendingParentNode))
-      .catch(error => console.log(error));
+api.getTrending()
+  .then((response) => console.log(response));
 
-    window.search.activate();
-  };
+const searchFormParent = document.querySelector(`.header-inner`);
+const movieListParent = document.querySelector(`.site-content .container`);
 
-  document.addEventListener('DOMContentLoaded', onDOMLoad);
-})();
+render(searchFormParent, new SearchView(), RenderPosition.BEFOREEND);
