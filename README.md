@@ -28,7 +28,7 @@ Code by: [Rostyslav Miniukov](https://github.com/embyth/)
 
 ```bash
 .
-├── gulpfile.js/      # Gulp tasks directory
+├── gulp/      # Gulp tasks directory
 ├── build/            # Project build directory (created automatically)
 ├── dist/             # Directory in which the assembled project is archived (created automatically)
 ├── source/           # Directory for placing project source files
@@ -51,6 +51,8 @@ Code by: [Rostyslav Miniukov](https://github.com/embyth/)
 ├── .stylelintrc.json # StyleLint config file       
 ├── package.json      # npm dependencies and project settings file
 ├── package-lock.json # npm lock-file
+├── gulpfile.js       # gulp config file
+├── webpack.config.js # webpack config file
 └── README.md         # Project documents
 ```
 
