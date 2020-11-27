@@ -12,7 +12,7 @@ export const ListType = {
     TITLE: `Search results for`
   },
   TRENDING: {
-    TYPE: `RESULTS`,
+    TYPE: `TRENDING`,
     CLASS: `trending`,
     TITLE: `Currently trending titles`
   }
@@ -22,4 +22,8 @@ export const SEARCH_SETTINGS = {
   LANGUAGE: `&language=en-US`,
   PAGE: `&page=1`,
   ADULT: `&include_adult=false`,
+};
+
+export const UpdateType = {
+  INIT: `INIT`,
 };

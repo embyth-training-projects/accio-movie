@@ -1,3 +1,4 @@
+import FilmsModel from '../model/films.js';
 import {SEARCH_SETTINGS} from '../const.js';
 
 const searchSettings = `${SEARCH_SETTINGS.LANGUAGE}${SEARCH_SETTINGS.PAGE}${SEARCH_SETTINGS.ADULT}`;
@@ -20,26 +21,45 @@ export default class Api {
   getTrending() {
     return this._load({url: `trending/all/week`})
       .then(Api.toJSON)
-      .then((response) => response.results);
-  }
-
-  getDetails(film) {
-    return this._load({url: `${film.media_type}/${film.id}`})
-      .then(Api.toJSON);
-  }
-
-  getCredits(film) {
-    return this._load({url: `${film.media_type}/${film.id}/credits`})
-      .then(Api.toJSON);
-  }
-
-  getIds(film) {
-    return this._load({url: `${film.media_type}/${film.id}/external_ids`})
-      .then(Api.toJSON);
+      .then((response) => response.results.map((film) => {
+        return Promise.all([
+          film,
+          this._getDetails(film),
+          this._getCredits(film),
+          this._getIds(film)
+        ]);
+      }))
+      .then((results) => Promise.all(results))
+      .then((results) => results.map(FilmsModel.adaptToClient));
   }
 
   searchFilm(query) {
     return this._load({url: `search/multi`}, `${searchSettings}&query=${query}`)
+      .then(Api.toJSON)
+      .then((response) => response.results.map((film) => {
+        return Promise.all([
+          film,
+          this._getDetails(film),
+          this._getCredits(film),
+          this._getIds(film)
+        ]);
+      }))
+      .then((results) => Promise.all(results))
+      .then((results) => results.map(FilmsModel.adaptToClient));
+  }
+
+  _getDetails(film) {
+    return this._load({url: `${film.media_type}/${film.id}`})
+      .then(Api.toJSON);
+  }
+
+  _getCredits(film) {
+    return this._load({url: `${film.media_type}/${film.id}/credits`})
+      .then(Api.toJSON);
+  }
+
+  _getIds(film) {
+    return this._load({url: `${film.media_type}/${film.id}/external_ids`})
       .then(Api.toJSON);
   }
 
