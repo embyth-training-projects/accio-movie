@@ -2,9 +2,9 @@ import AbstractView from './abstract.js';
 
 const createLoadingTemplate = () => {
   return (
-    `<li class="movie-loading">
-      <h3>Loading...</h3>
-    </li>`
+    `<div class="movie-loading">
+      <h3 class="movie-loading__text">Loading...</h3>
+    </div>`
   );
 };
 

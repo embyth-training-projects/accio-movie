@@ -72,6 +72,8 @@ $font-size-card-plot-m: 14px;
 $font-size-card-plot-d: 15px;
 $font-size-status-message-m: 14px;
 $font-size-status-message-d: 16px;
+$font-size-loading-m: 18px;
+$font-size-loading-d: 24px;
 
 $font-sizes: (
   base: $font-size-base,
@@ -97,6 +99,8 @@ $font-sizes: (
   card-plot-d: $font-size-card-plot-d,
   status-message-m: $font-size-status-message-m,
   status-message-d: $font-size-status-message-d,
+  loading-m: $font-size-loading-m,
+  loading-d: $font-size-loading-d,
 );
 
 // Color Variables
