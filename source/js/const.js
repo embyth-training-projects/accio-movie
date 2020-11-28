@@ -26,4 +26,24 @@ export const SEARCH_SETTINGS = {
 
 export const UpdateType = {
   INIT: `INIT`,
+  ERROR: `ERROR`,
 };
+
+export const POSTER = {
+  END_POINT: `https://image.tmdb.org/t/p`,
+  RESOLUTION: `/w500`
+};
+
+export const RatingToClassName = {
+  BAD: `rating-value--bad`,
+  NORMAL: `rating-value--normal`,
+  GOOD: `rating-value--good`,
+};
+
+export const GENRES_MAX_LENGTH = 3;
+
+export const PLOT_MAX_LENGTH = 200;
+
+export const IMDB_ENDPOINT = `https://imdb.com/title/`;
+
+export const GOOGLE_ENDPOINT = `https://google.com/search?q=`;
