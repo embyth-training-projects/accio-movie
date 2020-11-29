@@ -5,6 +5,7 @@
   padding: 30px 10px;
   color: $font-color-card;
   text-align: center;
+  margin: 25px 0;
 
   h3 {
     font-size: font-size(status-message-m);
@@ -32,5 +33,4 @@
 
 .error-message {
   background-color: $bg-color-error;
-  margin: 25px 0;
 }
