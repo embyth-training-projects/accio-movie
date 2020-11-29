@@ -5,31 +5,36 @@ import MovieCardPresenter from '../presenter/card.js';
 import SearchView from '../view/search.js';
 import ErrorView from '../view/error.js';
 import {render, remove} from '../utils/render.js';
-import {RenderPosition, ListType, UpdateType} from '../const.js';
+import {RenderPosition, ListType, UpdateType, Mode} from '../const.js';
 
 export default class Page {
-  constructor(searchContainer, listContainer, filmsModel, errorModel) {
+  constructor(searchContainer, listContainer, filmsModel, searchModel, errorModel, api) {
     this._searchContainer = searchContainer;
     this._listContainer = listContainer;
     this._filmsModel = filmsModel;
+    this._searchModel = searchModel;
     this._errorModel = errorModel;
+    this._api = api;
 
     this._cardPresenter = {};
 
     this._isLoading = true;
+    this._mode = Mode.DEFAULT;
+    this._searchQuery = null;
 
     this._loadingComponent = new LoadingView();
     this._searchComponent = new SearchView();
     this._noDataComponent = new NoDataView();
     this._errorComponent = null;
-    this._trendingFilmsComponent = new MovieListView(ListType.TRENDING.TYPE);
-    this._searchListComponent = new MovieListView(ListType.SEARCH.TYPE);
+    this._filmsListComponent = null;
 
     this._handleModelEvents = this._handleModelEvents.bind(this);
+    this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
   init() {
     this._filmsModel.addObserver(this._handleModelEvents);
+    this._searchModel.addObserver(this._handleModelEvents);
     this._errorModel.addObserver(this._handleModelEvents);
 
     this._renderSearch();
@@ -37,7 +42,14 @@ export default class Page {
   }
 
   _getFilms() {
-    return this._filmsModel.getFilms();
+    switch (this._mode) {
+      case Mode.TRENDING:
+        return this._filmsModel.getFilms();
+      case Mode.SEARCH:
+        return this._searchModel.getFilms();
+    }
+
+    return [];
   }
 
   _getError() {
@@ -68,7 +80,17 @@ export default class Page {
   }
 
   _renderSearch() {
+    this._searchComponent.setFormSubmitHandler(this._handleFormSubmit);
     render(this._searchContainer, this._searchComponent, RenderPosition.BEFOREEND);
+  }
+
+  _handleFormSubmit(value) {
+    this._mode = Mode.SEARCH;
+    this._searchQuery = value;
+
+    this._api.searchFilm(value)
+      .then((films) => this._searchModel.setFilms(UpdateType.INIT, films))
+      .finally(() => this._searchComponent.enableInput());
   }
 
   _renderError() {
@@ -77,13 +99,22 @@ export default class Page {
   }
 
   _renderCard(film) {
-    const cardPresenter = new MovieCardPresenter(this._trendingFilmsComponent.getContainer());
+    const cardPresenter = new MovieCardPresenter(this._filmsListComponent.getContainer());
     cardPresenter.init(film);
     this._cardPresenter[film.id] = cardPresenter;
   }
 
   _renderMovieList() {
-    render(this._listContainer, this._trendingFilmsComponent, RenderPosition.AFTERBEGIN);
+    switch (this._mode) {
+      case Mode.TRENDING:
+        this._filmsListComponent = new MovieListView(ListType.TRENDING.TYPE);
+        break;
+      case Mode.SEARCH:
+        this._filmsListComponent = new MovieListView(ListType.SEARCH.TYPE, this._searchQuery);
+        break;
+    }
+
+    render(this._listContainer, this._filmsListComponent, RenderPosition.AFTERBEGIN);
     this._getFilms().forEach((film) => this._renderCard(film));
   }
 
@@ -95,8 +126,7 @@ export default class Page {
 
     remove(this._loadingComponent);
     remove(this._noDataComponent);
-    remove(this._trendingFilmsComponent);
-    remove(this._searchListComponent);
+    remove(this._filmsListComponent);
     remove(this._errorComponent);
   }
 

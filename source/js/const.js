@@ -29,6 +29,12 @@ export const UpdateType = {
   ERROR: `ERROR`,
 };
 
+export const Mode = {
+  DEFAULT: `TRENDING`,
+  TRENDING: `TRENDING`,
+  SEARCH: `SEARCH`,
+};
+
 export const POSTER = {
   END_POINT: `https://image.tmdb.org/t/p`,
   RESOLUTION: `/w500`
