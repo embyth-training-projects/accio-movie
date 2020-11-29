@@ -23,7 +23,50 @@ const createSearchFormTemplate = () => {
 };
 
 export default class Search extends AbstractView {
+  constructor() {
+    super();
+
+    this._formSubmitHandler = this._formSubmitHandler.bind(this);
+    this._searchInputHandler = this._searchInputHandler.bind(this);
+
+    this.getElement()
+      .querySelector(`#query-search`)
+      .addEventListener(`input`, this._searchInputHandler);
+  }
+
   getTemplate() {
-    return createSearchFormTemplate();
+    return createSearchFormTemplate(this._isDisabled);
+  }
+
+  _formSubmitHandler(evt) {
+    evt.preventDefault();
+    const searchValue = this.getElement().querySelector(`#query-search`).value;
+    this.getElement().querySelector(`#query-search`).disabled = true;
+    this.getElement().querySelector(`.search-submit`).disabled = true;
+
+    this._callback.formSubmit(searchValue);
+  }
+
+  setFormSubmitHandler(callback) {
+    this._callback.formSubmit = callback;
+    this.getElement().addEventListener(`submit`, this._formSubmitHandler);
+  }
+
+  _searchInputHandler(evt) {
+    evt.preventDefault();
+
+    const value = evt.target.value;
+    const submitButton = this.getElement().querySelector(`.search-submit`);
+
+    if (value === `` || value.match(/^ *$/) || value === null) {
+      submitButton.disabled = true;
+    } else {
+      submitButton.disabled = false;
+    }
+  }
+
+  enableInput() {
+    this.getElement().querySelector(`#query-search`).disabled = false;
+    this.getElement().querySelector(`.search-submit`).disabled = false;
   }
 }

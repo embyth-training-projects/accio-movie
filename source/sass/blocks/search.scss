@@ -120,6 +120,16 @@
     box-shadow: 0 0 0 1px rgba($orange, 0.7);
   }
 
+  &:disabled {
+    transition: none;
+    opacity: 0.7;
+  }
+
+  &:disabled ~ .search-label {
+    transition: none;
+    opacity: 0;
+  }
+
   @media ($desktop) {
     font-size: font-size(input-d);
     padding: 13px 75px 13px 15px;
