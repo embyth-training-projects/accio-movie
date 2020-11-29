@@ -1,4 +1,5 @@
 import FilmsModel from '../model/films.js';
+import ErrorModel from '../model/error.js';
 import {SEARCH_SETTINGS} from '../const.js';
 
 const searchSettings = `${SEARCH_SETTINGS.LANGUAGE}${SEARCH_SETTINGS.PAGE}${SEARCH_SETTINGS.ADULT}`;
@@ -83,10 +84,10 @@ export default class Api {
 
   static checkStatus(response) {
     if (
-      response.status < SuccessHTTPStatusRange.MIN &&
+      response.status < SuccessHTTPStatusRange.MIN ||
       response.status > SuccessHTTPStatusRange.MAX
     ) {
-      throw new Error(`${response.status}: ${response.statusText}`);
+      return Promise.reject(response);
     }
 
     return response;

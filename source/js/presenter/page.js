@@ -8,17 +8,18 @@ import {render, remove} from '../utils/render.js';
 import {RenderPosition, ListType, UpdateType} from '../const.js';
 
 export default class Page {
-  constructor(searchContainer, listContainer, filmsModel) {
+  constructor(searchContainer, listContainer, filmsModel, errorModel) {
     this._searchContainer = searchContainer;
     this._listContainer = listContainer;
     this._filmsModel = filmsModel;
+    this._errorModel = errorModel;
 
     this._isLoading = true;
 
     this._loadingComponent = new LoadingView();
     this._searchComponent = new SearchView();
     this._noDataComponent = new NoDataView();
-    this._errorComponent = new ErrorView();
+    this._errorComponent = null;
     this._trendingFilmsComponent = new MovieListView(ListType.TRENDING.TYPE);
     this._searchListComponent = new MovieListView(ListType.SEARCH.TYPE);
 
@@ -27,6 +28,7 @@ export default class Page {
 
   init() {
     this._filmsModel.addObserver(this._handleModelEvents);
+    this._errorModel.addObserver(this._handleModelEvents);
 
     this._renderSearch();
     this._renderBoard();
@@ -34,6 +36,10 @@ export default class Page {
 
   _getFilms() {
     return this._filmsModel.getFilms();
+  }
+
+  _getError() {
+    return this._errorModel.getError();
   }
 
   _handleModelEvents(updateType) {
@@ -64,6 +70,7 @@ export default class Page {
   }
 
   _renderError() {
+    this._errorComponent = new ErrorView(this._getError());
     render(this._listContainer, this._errorComponent, RenderPosition.BEFOREEND);
   }
 
