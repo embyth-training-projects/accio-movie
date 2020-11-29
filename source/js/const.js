@@ -35,15 +35,22 @@ export const Mode = {
   SEARCH: `SEARCH`,
 };
 
+export const MediaType = {
+  TV: `tv`,
+  MOVIE: `movie`,
+};
+
 export const POSTER = {
   END_POINT: `https://image.tmdb.org/t/p`,
-  RESOLUTION: `/w500`
+  RESOLUTION: `/w500`,
+  MOCK: `img/poster-mock.jpg`,
 };
 
 export const RatingToClassName = {
   BAD: `rating-value--bad`,
   NORMAL: `rating-value--normal`,
   GOOD: `rating-value--good`,
+  UNSET: `rating-value--not-yet-rated`,
 };
 
 export const GENRES_MAX_LENGTH = 3;

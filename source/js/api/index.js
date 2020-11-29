@@ -1,6 +1,5 @@
 import FilmsModel from '../model/films.js';
-import ErrorModel from '../model/error.js';
-import {SEARCH_SETTINGS} from '../const.js';
+import {SEARCH_SETTINGS, MediaType} from '../const.js';
 
 const searchSettings = `${SEARCH_SETTINGS.LANGUAGE}${SEARCH_SETTINGS.PAGE}${SEARCH_SETTINGS.ADULT}`;
 
@@ -35,7 +34,7 @@ export default class Api {
   }
 
   searchFilm(query) {
-    return this._load({url: `search/multi`}, `${searchSettings}&query=${query}`)
+    return this._load({url: `search/multi`}, `${searchSettings}&query=${encodeURI(query)}`)
       .then(Api.toJSON)
       .then((response) => response.results.map((film) => {
         return Promise.all([
@@ -46,7 +45,8 @@ export default class Api {
         ]);
       }))
       .then((results) => Promise.all(results))
-      .then((results) => results.map(FilmsModel.adaptToClient));
+      .then((results) => results.map(FilmsModel.adaptToClient))
+      .then((results) => results.filter((item) => item.type === MediaType.TV || item.type === MediaType.MOVIE));
   }
 
   _getDetails(film) {

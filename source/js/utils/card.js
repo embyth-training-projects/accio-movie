@@ -2,7 +2,7 @@ import {POSTER, IMDB_ENDPOINT, GOOGLE_ENDPOINT, GENRES_MAX_LENGTH, PLOT_MAX_LENG
 
 export const getPosterImage = (film) => {
   const image = new Image();
-  image.src = `${POSTER.END_POINT}${POSTER.RESOLUTION}${film.poster}`;
+  image.src = film.poster ? `${POSTER.END_POINT}${POSTER.RESOLUTION}${film.poster}` : POSTER.MOCK;
   image.alt = film.title;
   image.className = `movie-poster`;
   return image.outerHTML;
@@ -19,18 +19,29 @@ export const getGoogleLink = (film) => {
 };
 
 export const getGenresString = (genres) => {
+  if (genres.length === 0) {
+    return `Unknown`;
+  }
+
   return genres
     .map((genre) => genre.name)
     .slice(0, GENRES_MAX_LENGTH)
     .join(`, `);
 };
 
-export const getCreatorString = (film) => {
-  switch (film.type) {
-    case `tv`:
-      return film.network[0].name;
-    case `movie`:
+export const getDirectorString = (film) => {
+  if (film.crew.length > 0) {
+    if (film.crew.find((item) => item.job === `Director`)) {
       return film.crew.find((item) => item.job === `Director`).name;
+    }
+  }
+
+  return `Unknown`;
+};
+
+export const getNetworkString = (film) => {
+  if (film.network.length > 0) {
+    return film.network[0].name;
   }
 
   return `Unknown`;
@@ -52,6 +63,10 @@ export const getFilmPlot = (plot) => {
 };
 
 export const getReadableDate = (dateString) => {
+  if (dateString === null) {
+    return `TBD`;
+  }
+
   const date = new Date(dateString);
   const day = date.toLocaleString(`en-US`, {day: `2-digit`});
   const month = date.toLocaleString(`en-US`, {month: `short`});
@@ -64,7 +79,9 @@ export const getRatingClass = (rating) => {
     return RatingToClassName.GOOD;
   } else if (rating < 7 && rating >= 5) {
     return RatingToClassName.NORMAL;
-  } else {
+  } else if (rating < 5 && rating > 0) {
     return RatingToClassName.BAD;
+  } else {
+    return RatingToClassName.UNSET;
   }
 };
