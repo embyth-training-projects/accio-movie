@@ -1,7 +1,7 @@
 import LoadingView from '../view/loading.js';
 import NoDataView from '../view/no-data.js';
 import MovieListView from '../view/movie-list.js';
-import MovieCardView from '../view/movie-card.js';
+import MovieCardPresenter from '../presenter/card.js';
 import SearchView from '../view/search.js';
 import ErrorView from '../view/error.js';
 import {render, remove} from '../utils/render.js';
@@ -13,6 +13,8 @@ export default class Page {
     this._listContainer = listContainer;
     this._filmsModel = filmsModel;
     this._errorModel = errorModel;
+
+    this._cardPresenter = {};
 
     this._isLoading = true;
 
@@ -74,16 +76,23 @@ export default class Page {
     render(this._listContainer, this._errorComponent, RenderPosition.BEFOREEND);
   }
 
-  _renderCards() {
-    this._getFilms().forEach((film) => render(this._trendingFilmsComponent.getContainer(), new MovieCardView(film), RenderPosition.BEFOREEND));
+  _renderCard(film) {
+    const cardPresenter = new MovieCardPresenter(this._trendingFilmsComponent.getContainer());
+    cardPresenter.init(film);
+    this._cardPresenter[film.id] = cardPresenter;
   }
 
   _renderMovieList() {
     render(this._listContainer, this._trendingFilmsComponent, RenderPosition.AFTERBEGIN);
-    this._renderCards();
+    this._getFilms().forEach((film) => this._renderCard(film));
   }
 
   _clearBoard() {
+    Object
+      .values(this._cardPresenter)
+      .forEach((presenter) => presenter.destroy());
+    this._cardPresenter = {};
+
     remove(this._loadingComponent);
     remove(this._noDataComponent);
     remove(this._trendingFilmsComponent);
